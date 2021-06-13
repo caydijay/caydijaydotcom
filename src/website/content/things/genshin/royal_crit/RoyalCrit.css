@@ -1,0 +1,66 @@
+form.royal-crit {
+  padding-left: 4ch;
+  padding-bottom: 1ch;
+}
+form.royal-crit table thead tr th {
+  height: 3ch;
+}
+form.royal-crit table thead tr th.x0y0 {
+  text-align: right;
+}
+form.royal-crit table thead tr th.x1y0 {
+  text-align: left;
+}
+form.royal-crit table thead tr th.x2y0 input {
+  background-color: var(--grey);
+  border: none;
+  border-radius: 2px;
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 100%;
+  font-weight: bold;
+  height: 3ch;
+  text-align: center;
+  width: 10ch;
+}
+form.royal-crit table thead tr th.x2y0 input:disabled {
+  color: var(--grey);
+}
+form.royal-crit table thead tr th.x2y0 input:hover {
+  background-color: var(--light-grey);
+}
+form.royal-crit table thead tr th.x3y0 {
+  font-size: 100%;
+  font-weight: bold;
+  text-align: center;
+  width: 16ch;
+}
+
+form.royal-crit table tbody tr td {
+  padding: 1ch;
+  text-align: right;
+}
+form.royal-crit table tbody tr td input {
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 2px;
+  border-style: none;
+  font-family: Consolas;
+  text-align: center;
+  width: 4ch;
+}
+
+form.royal-crit table tbody tr td.x3y1 {
+  color: var(--light-grey);
+  font-size: 80%;
+  text-align: center;
+}
+form.royal-crit table tbody tr td.x3y2 {
+  color: var(--grey);
+  font-size: 60%;
+  text-align: right;
+}
+form.royal-crit td.field:hover {
+  background-color: var(--black);
+}
+

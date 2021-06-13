@@ -1,0 +1,67 @@
+div.navigation ul {
+  margin: 0;
+  padding-left: 0ch;
+}
+div.navigation .leftpadding {
+  background-color: var(--dark-grey);
+  padding-left: 4ch;
+}
+div.navigation .navbar2 .space, div.navigation .navbar3 .space {
+  background-color: var(--dark-grey);
+  color: var(--dark-grey);
+}
+div.navigation ul.navbar2 {
+  background-color: var(--grey);
+}
+div.navigation ul.navbar3 {
+  background-color: var(--light-grey);
+}
+div.navigation li {
+  display: inline;
+  font-size: 130%;
+  font-weight: bold;
+}
+div.navigation li.space {
+  background-color: var(--grey);
+  color: var(--grey);
+  padding-left: 2ch;
+  padding-right: 2ch;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+div.navigation a {
+  color: var(--white);
+  text-decoration: none;
+  padding-left: 2ch;
+  padding-right: 2ch;
+}
+div.navigation a.active {
+  color: var(--dark-grey);
+}
+div.navigation .navbar1 a.active {
+  background-color: var(--red);
+}
+div.navigation .navbar1 a:hover {
+  background-color: var(--dark-red);
+}
+div.navigation .navbar2 a.active {
+  background-color: var(--orange);
+}
+div.navigation .navbar2 a:hover {
+  background-color: var(--dark-orange);
+}
+div.navigation .navbar3 a.active {
+  background-color: var(--yellow);
+  color: var(--dark-grey);
+}
+div.navigation .navbar3 a:hover {
+  background-color: var(--dark-yellow);
+}
+div.navigation div.space {
+  padding: 1ch;
+}
+div.navigation .content {
+  padding-left: 2ch;
+}
