@@ -1,23 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { calculateRoyalWeaponCritRate } from './RoyalCrit.js';
-import { asynchronously } from '../../../../Helpers';
+
+import RoyalCritWorker from './RoyalCritWorker';
+import { useQueryParameters } from '../../../../Helpers';
+import { validate } from '../../../../ReactHookFormHelpers';
 
 import './RoyalCrit.css';
 
 const RoyalCrit = () => {
   const [ calculating, setCalculating ] = useState(false);
   const [ critRate, setCritRate ] = useState(null);
+  const queryParameters = useQueryParameters([ 'displayCritRate', 'refinementRank', 'numberOfTargets' ]);
+  const { formState: { errors }, getValues, handleSubmit, register, trigger } = useForm({
+    defaultValues: queryParameters.get(),
+    mode: 'onChange'
+  });
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onChange' });
-  const onSubmit = async (data) => {
+  useEffect(
+    () => trigger(), // validate all fields
+    [ trigger ] // but only once (ie query parameters on page load because trigger never changes)
+  );
+
+  const calculate = (data) => {
+    queryParameters.update(getValues);
     setCalculating(true);
-    setCritRate(await asynchronously(calculateRoyalWeaponCritRate, data));
-    setCalculating(false);
+    RoyalCritWorker.onmessage = (event) => {
+      setCritRate(event.data);
+      setCalculating(false);
+    }
+    RoyalCritWorker.postMessage(data);
   }
 
   return (
-    <form className='royal-crit' onSubmit={handleSubmit(onSubmit)}>
+    <form className='royal-crit' onSubmit={handleSubmit(calculate)}>
       <table>
         <thead>
           <tr>
@@ -25,7 +40,7 @@ const RoyalCrit = () => {
             <th className='x1y0'>add?</th>
             <th className='x2y0'>
               <input type='submit' value='tell me!' disabled={
-                calculating || errors.displayCritRate || errors.refinementRank || errors.numberOfTargets
+                calculating || errors?.displayCritRate || errors?.refinementRank || errors?.numberOfTargets
               }/>
             </th>
             <th className='x3y0'>{calculating ? 'beep... boop...' : critRate ? (critRate * 100).toFixed(1) : null}</th>
@@ -36,9 +51,9 @@ const RoyalCrit = () => {
           <tr>
             <td className='field'>character's crit rate</td>
             <td>
-              <input {...register('displayCritRate', {
-                valueAsNumber: true, min: 0, max: 100
-              })} defaultValue='5' placeholder='5'/>
+              <input placeholder='5'
+                {...register('displayCritRate', validate(/^(([5-9])|([1-9][0-9])|(100))(\.[0-9])?$/, '5'))}
+              />
             </td>
             <td></td>
             <td className='x3y1'>{calculating ? 'beep...' : null}</td>
@@ -47,9 +62,9 @@ const RoyalCrit = () => {
           <tr>
             <td className='field'>refinement rank</td>
             <td>
-              <input {...register('refinementRank', {
-                valueAsNumber: true, min: 1, max: 5, pattern: { value: /^[1-5]{1}$/ } // bugged
-              })} defaultValue='1' placeholder='1' />
+              <input placeholder='1'
+                {...register('refinementRank', validate(/^[1-5]$/, '1'))}
+              />
             </td>
             <td></td>
             <td className='x3y2'>{calculating ? 'boop...' : null}</td>
@@ -58,9 +73,9 @@ const RoyalCrit = () => {
           <tr>
             <td className='field'>number of targets hit per swing</td>
             <td>
-              <input {...register('numberOfTargets', {
-                valueAsNumber: true, min: 1, max: 9, pattern: { value: /^[1-9]{1}$/ }
-              })} defaultValue='1' placeholder='1' />
+              <input placeholder='1'
+                {...register('numberOfTargets', validate(/^[1-9]$/, '1'))}
+              />
             </td>
           </tr>
 

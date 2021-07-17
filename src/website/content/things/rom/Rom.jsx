@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Rom = () => {
-  const header = "bleep blop rom";
+  const header = 'bleep blop rom';
 
   return (
     <div className='rom'>

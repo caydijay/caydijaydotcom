@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import { getValue, routesToPath } from './Helpers'
+import { getNestedValue, getPathFromRoutes } from './Helpers'
 
 import './Navigation.css';
 
 const buildNavLink = (parents, route) => {
   const exact = { exact: route.exact || false };
-  const path = `${routesToPath(parents)}/${route.resourceLocation}`;
+  const path = `${getPathFromRoutes(parents)}/${route.resourceLocation}`;
   const navLink = (
     <li key={path}>
       <NavLink {...exact} to={path}>
@@ -31,7 +31,7 @@ const buildSpace = (invisibleLabel, key) => {
 
 const buildNavBar = (parents, children, spaces) => {
   const navBarContent = [];
-  const path = routesToPath(parents);
+  const path = getPathFromRoutes(parents);
   const navLinks = spaces.map((space, i ) => buildSpace(space.label, path + i)).concat(
     children.map((child) => {
       const [ navLink, navLinkContent ] = buildNavLink(parents, child);
@@ -50,9 +50,9 @@ const buildNavBar = (parents, children, spaces) => {
 }
 
 export default function Navigation({ routes }) {
-  const queue = [ 
+  const queue = [
     { parents: [],
-      children: routes.labels.map((label) => getValue(routes, [ label ])),
+      children: routes.labels.map((label) => getNestedValue(routes, [ label ])),
       spaces: [],
     }
    ]
