@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import RoyalCritWorker from './RoyalCritWorker';
-import { useQueryParameters } from '../../../../Helpers';
-import { validate } from '../../../../ReactHookFormHelpers';
+import { useQueryParameters } from '../../../Helpers';
+import { validate } from '../../../ReactHookFormHelpers';
 
 import './RoyalCrit.css';
 
@@ -36,8 +36,8 @@ const RoyalCrit = () => {
       <table>
         <thead>
           <tr>
-            <th className='x0y0'>how much crit do royal weapons</th>
-            <th className='x1y0'>add?</th>
+            <th className='x0y0'>how much crit do royal weapons add?</th>
+            {/* <th className='x1y0'>add?</th> */}
             <th className='x2y0'>
               <input type='submit' value='tell me!' disabled={
                 calculating || errors?.displayCritRate || errors?.refinementRank || errors?.numberOfTargets
@@ -86,4 +86,10 @@ const RoyalCrit = () => {
   )
 }
 
-export default RoyalCrit;
+const ROYAL_CRIT = {
+  component: RoyalCrit,
+  display: 'ryl crit',
+  resourceLocation: 'royal-crit'
+}
+
+export default ROYAL_CRIT;

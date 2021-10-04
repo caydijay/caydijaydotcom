@@ -8,17 +8,6 @@ const createWorkerFromFunction = (fn) => {
   return new Worker(URL.createObjectURL(blob), { type: 'module' });
 }
 
-const getNestedValue = (outerMap, keys) => {
-  if (keys.length) return keys.reduce((innerMap, key) => innerMap[key], outerMap);
-  return null;
-}
-
-const getPathFromRoutes = (routes) => {
-  return routes.length > 0
-    ? `/${routes.map((route) => route.resourceLocation).join('/')}`
-    : '';
-}
-
 const useQueryParameters = (queryParameters) => {
   const location = useLocation();
   const urlSearchParams = new URLSearchParams(location.search);
@@ -41,4 +30,4 @@ const useQueryParameters = (queryParameters) => {
   }
 }
 
-export { createWorkerFromFunction, getNestedValue, getPathFromRoutes, useQueryParameters };
+export { createWorkerFromFunction, useQueryParameters };

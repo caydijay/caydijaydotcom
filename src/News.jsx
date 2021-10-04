@@ -10,4 +10,11 @@ const News = () => {
   )
 }
 
-export default News;
+const NEWS = {
+  component: News,
+  display: 'news',
+  resourceLocation: '',
+  exact: true,
+}
+
+export default NEWS;

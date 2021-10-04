@@ -1,4 +1,4 @@
-import { createWorkerFromFunction } from '../../../../Helpers';
+import { createWorkerFromFunction } from '../../../Helpers';
 
 const worker = createWorkerFromFunction((event) => {
   const swingOnce = (numberOfTargets, initialCritRate, critRatePerStack, stacks) => {

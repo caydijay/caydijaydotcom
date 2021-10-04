@@ -1,9 +1,14 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Navigation from './Navigation';
-import ROUTES from './Routes';
+
+import NEWS from './News';
+import THINGS from './things/Things';
+import THOUGHTS from './thoughts/Thoughts';
 
 import './App.css';
+
+const ROUTES = [ NEWS, THINGS, THOUGHTS ]
 
 export default function App() {
   const header = "caydi jay doesn't understand";

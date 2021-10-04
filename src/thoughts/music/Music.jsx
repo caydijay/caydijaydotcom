@@ -10,4 +10,10 @@ const Music = () => {
   );
 }
 
-export default Music;
+const MUSIC = {
+  component: Music,
+  display: 'music',
+  resourceLocation: 'music',
+}
+
+export default MUSIC;

@@ -27,7 +27,7 @@ body {
   --font: Consolas;
 }
 h1 {
-  padding-left: 2ch;
+  text-align: center;
 }
 
 /* code {

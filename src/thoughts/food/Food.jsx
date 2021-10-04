@@ -10,4 +10,10 @@ const Food = () => {
   )
 }
 
-export default Food;
+const FOOD = {
+  component: Food,
+  display: 'food',
+  resourceLocation: 'food',
+}
+
+export default FOOD;
